@@ -46,16 +46,16 @@ nav li a {
 
 }
 
-#budget {
+.budget {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-evenly;
     width: 100%;
-    height: 350px;
+    height: 70vh;
 }
 
-#budget .backg {
+.budget .backg {
     width: 45%;
     height: 50vh;
 }
@@ -63,14 +63,42 @@ nav li a {
 .data {
     width: 50%;
     padding: 20px;
-    border: 1px solid black;
+    border: 2px solid black;
     border-radius: 20px;
+    border-color: orange;
 }
 
+.amt {
+    color: red;
+    padding-left: 10px;
+}
+.amt1 {
+    color: rgb(94, 148, 13);
+    padding-left: 10px;
+}
+
+.data .btn {
+    margin-right: -3px;
+    box-shadow: 0 0 0 0;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons button,
 button {
     background-color: #5757ea;
     border: none;
+    color: white;
+    font-weight: 600;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 1px 0 2px 1px rgb(43, 41, 41);
 }
+
+
 
 .balance {
     color: rgb(94, 148, 13);
@@ -79,4 +107,13 @@ button {
 }
 input {
     border: none;
+}
+
+.pie {
+    width: 70%;
+    height: 400px;
+}
+
+.buttons .btn2 {
+    background-color: rgb(255, 98, 0);
 }
