@@ -1,8 +1,19 @@
 import React, { useState } from 'react';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 import { Pie } from 'react-chartjs-2';
-import 'chart.js/auto'; // Auto-import required Chart.js component
+import 'chart.js/auto'; 
+
 
 function Budget() {
+
+  const getExpenseDetails = () => {
+    return expenses.map(expense => ({
+      name: expense.name,
+      percentage: ((Number(parseNumber(expense.amount)) / totalExpenses) * 100).toFixed(2),
+    }));
+  };
+
   // Income and expenses state
   const [incomeItems, setIncomeItems] = useState([
     { id: 1, name: '', amount: '0', value: 'New income' },
@@ -24,6 +35,7 @@ function Budget() {
     return formatted.replace(/,/g, '');
   };
   
+  
 
   const [showChart, setShowChart] = useState(false); // State to toggle pie chart
 
@@ -37,6 +49,33 @@ function Budget() {
   // Calculate balance
   const balance = totalIncome - totalExpenses;
 
+  const expenseDetails = getExpenseDetails();
+
+
+
+  const downloadAsPDF = () => {
+    const input = document.body; 
+
+    html2canvas(input, { scale: 2, useCORS: true }).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const imgWidth = canvas.width;
+      const imgHeight = canvas.height;
+
+      
+      const pdf = new jsPDF({
+        orientation: imgWidth > imgHeight ? 'landscape' : 'portrait',
+        unit: 'px',
+        format: [imgWidth, imgHeight],
+      });
+
+      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+      pdf.save('budget.pdf');
+    }).catch(error => console.error("Error generating PDF:", error));
+  };
+
+
+
+
   // Handle income name change
   const handleIncomeNameChange = (id, newName) => {
     setIncomeItems(incomeItems.map(item => 
@@ -47,9 +86,10 @@ function Budget() {
   // Handle income amount change
   const handleIncomeAmountChange = (id, newAmount) => {
     setIncomeItems(incomeItems.map(item => 
-      item.id === id ? { ...item, amount: formatNumber(parseNumber(newAmount)) } : item
+      item.id === id ? { ...item, amount: newAmount } : item 
     ));
   };
+  
   
 
   // Add new income row
@@ -77,9 +117,10 @@ function Budget() {
   // Handle expense amount change
   const handleExpenseAmountChange = (id, newAmount) => {
     setExpenses(expenses.map(expense => 
-      expense.id === id ? { ...expense, amount: formatNumber(parseNumber(newAmount)) } : expense
+      expense.id === id ? { ...expense, amount: newAmount } : expense 
     ));
   };
+  
   
 
   // Add new expense row
@@ -102,9 +143,7 @@ function Budget() {
     setShowChart(!showChart);
   };
 
-  // const formatNumber = (number) => {
-  //   return new Intl.NumberFormat('en-US').format(number);
-  // };
+ 
   
 
   // Prepare data for the pie chart
@@ -121,6 +160,16 @@ function Budget() {
   };
 
 
+  
+
+
+  
+
+  
+
+  
+
+
 
   return (
     <section id="budgt">
@@ -129,6 +178,10 @@ function Budget() {
       <div className='budget'>
         <div className='backg'>
           <img src='images/11116.jpg' alt='background' style={{width:'100%'}}></img>
+
+          <button onClick={toggleChart} style={{ marginTop: '-10px', padding: '10px 20px' }}>
+            {showChart ? 'Hide' : 'Analyze Result'}
+          </button>
         </div>
 
         {/* Income Section */}
@@ -236,17 +289,40 @@ function Budget() {
           
         </div>
       </div>
-          <button onClick={toggleChart} style={{ marginTop: '20px', padding: '10px 20px' }}>
-            {showChart ? 'Hide Chart' : 'Show Chart'}
-          </button>
 
-          {/* Display pie chart if showChart is true */}
+      <div className='detailz'>
+          
           {showChart && (
-            <div className='pie' style={{ marginTop: '20px' }}>
-              <Pie data={pieData} />
+            <div className='pie' style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Pie
+                data={{
+                  labels: [...expenses.map(expense => expense.name), 'Balance'],
+                  datasets: [{
+                    data: [...expenses.map(expense => parseNumber(expense.amount)), balance > 0 ? balance : 0],
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#66BB6A', '#FFA726', '#8D6E63'],
+                  }],
+                }}
+              />
+              <div className='det' style={{ marginLeft: '20px' }}>
+                <h4>Expense Details</h4>
+                <ul>
+                  {expenseDetails.map(detail => (
+                    <li key={detail.name}>
+                      You spent {detail.percentage}% on {detail.name}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           )}
+      </div>
+
+      <button onClick={downloadAsPDF} style={{ margin: '20px', padding: '10px 20px' }}>
+        Download Result
+      </button>
     </section>
+
+    
   );
 }
 
