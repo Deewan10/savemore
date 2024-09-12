@@ -173,10 +173,11 @@ function Budget() {
 
   return (
     <section id="budgt">
-      <h2>Budget</h2>
+      
 
       <div className='budget'>
         <div className='backg'>
+        <h2>Budget</h2>
           <img src='images/11116.jpg' alt='background' style={{width:'100%'}}></img>
 
           <button onClick={toggleChart} style={{ marginTop: '-10px', padding: '10px 20px' }}>
@@ -294,15 +295,17 @@ function Budget() {
           
           {showChart && (
             <div className='pie' style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <div className='pieChart'>
               <Pie
                 data={{
                   labels: [...expenses.map(expense => expense.name), 'Balance'],
                   datasets: [{
                     data: [...expenses.map(expense => parseNumber(expense.amount)), balance > 0 ? balance : 0],
-                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#66BB6A', '#FFA726', '#8D6E63'],
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#66BB6A','#df0eab', '#ff0000', '#8D6E63', '#15ff00', '#00b7ff', '#FFA726'],
                   }],
                 }}
               />
+              </div>
               <div className='det' style={{ marginLeft: '20px' }}>
                 <h4>Expense Details</h4>
                 <ul>

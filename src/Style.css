@@ -47,7 +47,9 @@ nav li a {
 }
 
 #budgt h2 {
-    margin-left: 200px;
+    font-size: 2.3rem;
+    font-weight: 600;
+    margin-top: -20px;
 }
 
 .budget {
@@ -57,7 +59,7 @@ nav li a {
     justify-content: space-evenly;
     width: 100%;
     /* height: 65vh; */
-    margin-top: 20px;
+    margin-top: 50px;
 }
 
 .budget .backg {
@@ -120,8 +122,14 @@ input {
 
 .pie {
     width: 100%;
+    padding: 20px;
+    display: flex;
+    flex: wrap;
+}
+.pieChart {
+    width: 70%;
     height: 80vh;
-    margin-left: 100px;
+    margin-left: 10px;
 }
 
 .buttons .btn2 {
@@ -131,17 +139,23 @@ input {
 .detailz {
     margin-top: 135px;
     display: flex;
-    justify-content: space-evenly; 
-
+    justify-content: space-between; 
+    width: 100%;
 }
 
 .detailz .det {
-    width: 100%;
-    padding:30px 140px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    padding:15px;
 }
 .detailz .det h4{
-    font-size: 2.3rem;
+    font-size: 2.1rem;
     font-weight: 600;
+    display: flex;
+    width: 100%;
 }
 
 .detailz .det li {
@@ -150,21 +164,96 @@ input {
 
 
 
-@media (max-width: 768px) {
+.detailz .det ul{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
 
-    nav {
+    
+
+.pieChart canvas {
+    width: 100%;
+}
+
+
+
+@media (max-width: 750px) {
+
+    nav .arc {
         display: none;
+    }
+    #budgt h2 {
+        margin-left: 20px;
+        font-size: 2.4rem;
+        
     }
     .budgt {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
     .budget {
         display: flex;
-        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .budget .backg {
+        width: 80%;
+        height: 60vh;
+        align-items: center;
+        margin-left: 10px;
+    }
+    .data {
+        width: 90%;
+        padding: 20px;
+        margin-left: 0px;
+    }
+    .detailz {
+        display: flex;
+        
+        width: 100%;
+    }
+    .detailz .det {
+        display: flex;
+        flex-wrap: wrap;
+        width: 200px;
+        padding: 0px 10px 30px;
+    }
+    .detailz .det ul{
+        display: flex;
         flex-wrap: wrap;
         width: 100%;
-        
-        
     }
+    .pie {
+        width: 100%;
+        display: flex;
+        flex: wrap;
+    }
+    .pieChart {
+        width: 70%;
+    }
+    .pieChart canvas {
+        width: 100%;
+    }
+
+    .detailz .det h4 {
+        font-size: 1rem;
+        font-weight: 600;
+    }
+    .detailz .det li {
+        font-size: 1rem;
+    }
+}
+
+
+@media (max-width: 458px) {
+
+    nav {
+        display: none;
+    }
+
+    
 }
