@@ -10,8 +10,8 @@ function Header() {
         </div>
         <div className='arc'>
         <ul>
-          <li><a href="#budget">Home</a></li>
-          <li><a href="#pocket">Pocket</a></li>
+          <li><a href="#budget">Budget</a></li>
+          <li><a href="#inventory">Inventory</a></li>
           <li><a href="#goals">Goals</a></li>
           {/* <li><a href="#login">Log In/Sign Up</a></li> */}
         </ul>

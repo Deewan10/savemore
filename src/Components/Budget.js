@@ -274,7 +274,7 @@ function Budget() {
           </div>
 
           {/* Total Income, Total Expenses, and Balance */}
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div className='total' style={{ display: 'flex', justifyContent: 'space-between' }}>
             <div>
               <h3>Total Income: ${formatNumber(totalIncome)}</h3>
             </div>
@@ -318,11 +318,13 @@ function Budget() {
               </div>
             </div>
           )}
+
+          <button onClick={downloadAsPDF} style={{ margin: '20px', padding: '10px 20px' }}>
+            Download Result
+          </button>
       </div>
 
-      <button onClick={downloadAsPDF} style={{ margin: '20px', padding: '10px 20px' }}>
-        Download Result
-      </button>
+      
     </section>
 
     
