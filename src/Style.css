@@ -124,7 +124,8 @@ input {
     width: 100%;
     padding: 20px;
     display: flex;
-    flex: wrap;
+    
+    flex-wrap: wrap;
 }
 .pieChart {
     width: 60%;
