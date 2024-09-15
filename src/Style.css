@@ -124,7 +124,6 @@ input {
     width: 100%;
     padding: 20px;
     display: flex;
-    
     flex-wrap: wrap;
 }
 .pieChart {
@@ -143,6 +142,9 @@ input {
     justify-content: space-between;
     align-items: center; 
     width: 100%;
+    flex-wrap: wrap;
+    border: 2px solid rgb(255, 98, 0);
+    border-radius: 20px;
 }
 
 .detailz .det {
@@ -180,7 +182,12 @@ input {
     width: 100%;
 }
 
-
+.buttn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 @media (max-width: 750px) {
 

@@ -319,11 +319,13 @@ function Budget() {
             </div>
           )}
 
+        <div className='buttn'>
           <button onClick={downloadAsPDF} style={{ margin: '20px', padding: '10px 20px' }}>
             Download Result
           </button>
+        </div>  
       </div>
-
+      
       
     </section>
 
