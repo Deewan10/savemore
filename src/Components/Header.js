@@ -19,10 +19,10 @@ function Header() {
 
 
         <div className="hamburger" onClick={toggleMenu}>
-          {isOpen ? <FaTimes /> : <FaBars />} 
+          {isOpen ? <FaTimes style={{ color: 'red' }} /> : <FaBars style={{ color: 'blue' }} />}
         </div>
 
-        {/* Arc and nav menu, toggle visibility based on state */}
+        
         <div className={`arc ${isOpen ? 'open' : ''}`}>
           <ul>
             <li><a href="#budget">Home</a></li>
