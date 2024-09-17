@@ -23,10 +23,10 @@ function Header() {
         </div>
 
         
-        <div className={`arc ${isOpen ? 'open' : ''}`}>
+        <div className={`arc ${isOpen ? 'show' : ''}`}>
           <ul>
             <li><a href="#budget">Home</a></li>
-            <li><a href="#pocket">Pocket</a></li>
+            <li><a href="inventory.js">Pocket</a></li>
             <li><a href="#goals">Goals</a></li>
             {/* <li><a href="#login">Log In/Sign Up</a></li> */}
           </ul>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './Components/Header.js';
 import Budget from './Components/Budget.js';
-
+import Inventory from './Components/Inventory.js';
 
 import './Style.css';
 
@@ -10,7 +10,7 @@ function App() {
       <div className="App">
         <Header />
         <Budget />
-        {/* <Pocket /> */}
+        <Inventory /> 
         
       </div>
     );
