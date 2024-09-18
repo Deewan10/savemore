@@ -11,15 +11,7 @@ function Inventory() {
     return items.reduce((total, item) => total + item.total, 0).toFixed(2);
   };
 
-  // Calculate the sum of the rate column
-  const calculateTotalRate = () => {
-    return items.reduce((total, item) => total + parseFloat(item.rate || 0), 0).toFixed(2);
-  };
 
-  // Calculate the sum of the quantity column
-  const calculateTotalQuantity = () => {
-    return items.reduce((total, item) => total + parseInt(item.quantity || 0), 0);
-  };
 
   // Handle input changes for each item
   const handleInputChange = (id, field, value) => {
