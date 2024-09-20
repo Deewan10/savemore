@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 function Inventory() {
   // State to store items in the inventory
   const [items, setItems] = useState([
     { id: 1, name: '', rate: 0, quantity: 0, total: 0 }
   ]);
+
+  const [selectedDate, setSelectedDate] = useState(null);
 
   // State to toggle visibility of profit column
   const [showProfit, setShowProfit] = useState(false);
@@ -76,6 +80,24 @@ function Inventory() {
   return (
     <div className='inventory'>
       <h2>Inventory Calculator</h2>
+
+       {/* Date picker input */}
+      <DatePicker 
+        selected={selectedDate} 
+        onChange={date => setSelectedDate(date)} 
+        dateFormat="MM/dd/yyyy" 
+        placeholderText="Select a date" 
+      />
+
+      {/* Show selected date */}
+      {selectedDate && (
+        <p>
+          Selected Date: {selectedDate.toLocaleDateString()}
+        </p>
+      )}
+    
+
+
       <div className='tab'>
         <table border="1" cellPadding="10" style={{ width: '100%', marginBottom: '20px',  borderColor: '#5757ea' }}>
           <thead>

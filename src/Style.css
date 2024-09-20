@@ -206,6 +206,10 @@ input {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    margin-top: 50px;
+}
+.inventory h2 {
+    margin-bottom: 35px;
 }
 .tab {
     border: 2px solid orange;
@@ -213,6 +217,11 @@ input {
     width: 100%;
     border-radius: 20px;
 }
+
+td {
+    padding-left: 10px;
+}
+
 
 
 
