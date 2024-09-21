@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import FloatingDatePicker from './FloatingDatePicker.js';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { Pie } from 'react-chartjs-2';
