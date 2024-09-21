@@ -9,8 +9,7 @@ function Inventory() {
   ]);
 
   const [selectedDate, setSelectedDate] = useState(null);
-
-  // State to toggle visibility of profit column
+  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false); // State to toggle calendar picker visibility
   const [showProfit, setShowProfit] = useState(false);
 
   // Calculate total sales
@@ -77,29 +76,36 @@ function Inventory() {
     }
   };
 
+  // Toggle the calendar date picker
+  const toggleDatePicker = () => {
+    setIsDatePickerOpen(!isDatePickerOpen);
+  };
+
   return (
     <div className='inventory'>
       <h2>Inventory Calculator</h2>
 
-       {/* Date picker input */}
-      <DatePicker 
-        selected={selectedDate} 
-        onChange={date => setSelectedDate(date)} 
-        dateFormat="MM/dd/yyyy" 
-        placeholderText="Select a date" 
-      />
+      {/* Button to open the calendar date picker */}
+      <button onClick={toggleDatePicker} style={{ marginBottom: '10px' }}>
+        {selectedDate ? `Selected Date: ${selectedDate.toLocaleDateString()}` : 'Select Date'}
+      </button>
 
-      {/* Show selected date */}
-      {selectedDate && (
-        <p>
-          Selected Date: {selectedDate.toLocaleDateString()}
-        </p>
+      {/* Calendar-only Date Picker */}
+      {isDatePickerOpen && (
+        <div style={{ position: 'absolute', zIndex: 1000, backgroundColor: '#fff', padding: '10px', boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)' }}>
+          <DatePicker
+            selected={selectedDate}
+            onChange={(date) => {
+              setSelectedDate(date);
+              setIsDatePickerOpen(false); // Close date picker after selecting a date
+            }}
+            inline // This ensures the date picker appears as a calendar only
+          />
+        </div>
       )}
-    
-
 
       <div className='tab'>
-        <table border="1" cellPadding="10" style={{ width: '100%', marginBottom: '20px',  borderColor: '#5757ea' }}>
+        <table border="1" cellPadding="10" style={{ width: '100%', marginBottom: '20px', borderColor: '#5757ea' }}>
           <thead>
             <tr>
               <th>Item Name</th>

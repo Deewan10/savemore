@@ -218,9 +218,37 @@ input {
     border-radius: 20px;
 }
 
-td {
+.inventory td {
     padding-left: 10px;
 }
+.inventory input {
+width: 100%;
+}
+
+/* .date-picker-input {
+    width: 200px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .date-picker-input:hover {
+    border-color: #888;
+  }
+  
+  .date-picker-input:focus {
+    border-color: #0056b3;
+    outline: none;
+  } */
+  
+  /* Ensure only the input is visible unless clicked */
+  .react-datepicker__tab-loop {
+    display: none;
+  }
+  
 
 
 
