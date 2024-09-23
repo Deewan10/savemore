@@ -12,8 +12,8 @@ function FloatingDatePicker({ selectedDate, setSelectedDate }) {
 
   return (
     <div>
-      <button onClick={toggleDatePicker} style={{ marginBottom: '10px' }}>
-        {selectedDate ? `Selected Date: ${selectedDate.toLocaleDateString()}` : 'Select Date'}
+      <button className='datee' onClick={toggleDatePicker} style={{ marginBottom: '10px' }}>
+        {selectedDate ? ` Date: ${selectedDate.toLocaleDateString()}` : 'Select Date'}
       </button>
 
       {isDatePickerOpen && (

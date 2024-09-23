@@ -218,11 +218,12 @@ input {
     border-radius: 20px;
 }
 
-.inventory td {
+.inventory tr {
     padding-left: 10px;
 }
 .inventory input {
-width: 100%;
+    width: 100%;
+    
 }
 .inventory .date{
     margin: 5px;
@@ -230,7 +231,22 @@ width: 100%;
     justify-content: flex-start;
     width: 100%;
 }
+.datee {
+    padding: 5px;
+}
 
+.history {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.history button {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    width: 9vw;
+}
 
 
 

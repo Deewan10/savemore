@@ -9,6 +9,7 @@ function Inventory() {
 
   const [selectedDate, setSelectedDate] = useState(null);
   const [showProfit, setShowProfit] = useState(false);
+  const [history, setHistory] = useState([]); // State to store history of saved transactions
 
   // Calculate total sales
   const calculateTotalSales = () => {
@@ -58,6 +59,24 @@ function Inventory() {
     setItems(items.filter(item => item.id !== id));
   };
 
+  // Save the current state of the inventory to history
+  const saveInventoryToHistory = () => {
+    if (!selectedDate) {
+      alert("Please select a date to save the inventory.");
+      return;
+    }
+
+    const entry = {
+      date: selectedDate,
+      items: [...items], // Make a copy of the current items
+      totalSales: calculateTotalSales(), // Save total sales in history
+      ...(showProfit && { totalProfit: calculateTotalProfit() }) // Optionally save total profit
+    };
+
+    setHistory([...history, entry]);
+    alert("Inventory saved to history.");
+  };
+
   // Toggle the profit column visibility
   const toggleProfitColumn = () => {
     setShowProfit(!showProfit);
@@ -74,13 +93,16 @@ function Inventory() {
     }
   };
 
-  
+  // Function to filter history by selected date
+  const getFilteredHistory = () => {
+    return history.filter(entry => entry.date && entry.date.toDateString() === selectedDate?.toDateString());
+  };
 
   return (
     <div className='inventory'>
       <h2>Inventory Calculator</h2>
       <div className='date'>
-      <FloatingDatePicker selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+        <FloatingDatePicker selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
       </div>
 
       <div className='tab'>
@@ -153,7 +175,7 @@ function Inventory() {
             </tr>
           </tfoot>
         </table>
-        
+
         <button onClick={addItem} style={{ padding: '10px 20px', marginBottom: '20px', backgroundColor: '#5757ea', color: 'white' }}>
           Add Item
         </button>
@@ -163,7 +185,38 @@ function Inventory() {
 
         <h3>Total Sales: ${calculateTotalSales()}</h3>
         {showProfit && <h3>Total Profit: ${calculateTotalProfit()}</h3>}
+
+        
       </div>
+
+      <div className='history'>
+        <button onClick={saveInventoryToHistory} style={{ padding: '10px 20px', marginBottom: '20px', backgroundColor: '5757ea', color: 'white', marginTop: '35px', position: '' }}>
+          Save to History
+        </button>
+
+        {/* History Section */}
+        {selectedDate && (
+          <div className="history">
+            <h3>History for {selectedDate.toDateString()}:</h3>
+            <ul>
+              {getFilteredHistory().map((entry, index) => (
+                <li key={index}>
+                  <strong>Saved Inventory:</strong>
+                  <ul>
+                    {entry.items.map((item, i) => (
+                      <li key={i}>{item.name} - Rate: {item.rate}, Quantity: {item.quantity}, Total: {item.total}</li>
+                    ))}
+                  </ul>
+                  <strong>Total Sales:</strong> ${entry.totalSales}
+                  {showProfit && entry.totalProfit && <><br /><strong>Total Profit:</strong> ${entry.totalProfit}</>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+
+      
     </div>
   );
 }
