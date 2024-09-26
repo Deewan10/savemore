@@ -10,6 +10,7 @@ function Inventory() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [showProfit, setShowProfit] = useState(false);
   const [history, setHistory] = useState([]); // State to store history of saved transactions
+  const [title, setTitle] = useState("Inventory Title"); // Customizable title
 
   // Calculate total sales
   const calculateTotalSales = () => {
@@ -67,10 +68,12 @@ function Inventory() {
     }
 
     const entry = {
+      title, // Save the title to history
       date: selectedDate,
       items: [...items], // Make a copy of the current items
       totalSales: calculateTotalSales(), // Save total sales in history
-      ...(showProfit && { totalProfit: calculateTotalProfit() }) // Optionally save total profit
+      ...(showProfit && { totalProfit: calculateTotalProfit() }), // Optionally save total profit
+      timestamp: new Date() // Store the exact time the inventory was saved
     };
 
     setHistory([...history, entry]);
@@ -98,11 +101,34 @@ function Inventory() {
     return history.filter(entry => entry.date && entry.date.toDateString() === selectedDate?.toDateString());
   };
 
+  // Function to load history back into the inventory
+  const loadHistory = (entry) => {
+    setItems(entry.items);
+    setSelectedDate(entry.date);
+    setTitle(entry.title);
+    if (entry.totalProfit !== undefined) {
+      setShowProfit(true);
+    } else {
+      setShowProfit(false);
+    }
+  };
+
   return (
     <div className='inventory'>
       <h2>Inventory Calculator</h2>
       <div className='date'>
         <FloatingDatePicker selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+      </div>
+
+      {/* Customizable title input */}
+      <div className='title'>
+        <input 
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Enter Title"
+          style={{ marginBottom: '10px', padding: '10px', width: '100%', fontSize: '16px',  fontWeight: 'normal' }}
+        />
       </div>
 
       <div className='tab'>
@@ -189,34 +215,25 @@ function Inventory() {
         
       </div>
 
-      <div className='history'>
-        <button onClick={saveInventoryToHistory} style={{ padding: '10px 20px', marginBottom: '20px', backgroundColor: '5757ea', color: 'white', marginTop: '35px', position: '' }}>
+        
+
+      {/* History Section */}
+      <div className="history">
+        <button onClick={saveInventoryToHistory} style={{ padding: '10px 20px', marginBottom: '20px', backgroundColor: '#5757ea', color: 'white' }}>
           Save to History
         </button>
-
-        {/* History Section */}
-        {selectedDate && (
-          <div className="history">
-            <h3>History for {selectedDate.toDateString()}:</h3>
-            <ul>
-              {getFilteredHistory().map((entry, index) => (
-                <li key={index}>
-                  <strong>Saved Inventory:</strong>
-                  <ul>
-                    {entry.items.map((item, i) => (
-                      <li key={i}>{item.name} - Rate: {item.rate}, Quantity: {item.quantity}, Total: {item.total}</li>
-                    ))}
-                  </ul>
-                  <strong>Total Sales:</strong> ${entry.totalSales}
-                  {showProfit && entry.totalProfit && <><br /><strong>Total Profit:</strong> ${entry.totalProfit}</>}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+        <h3>Saved History:</h3>
+        <div className="history-cards" style={{ display: 'flex', flexWrap: 'wrap' }}>
+          {history.map((entry, index) => (
+            <div key={index} className="history-card" onClick={() => loadHistory(entry)} style={{ border: '1px solid #ddd', padding: '10px', margin: '10px', width: '200px', cursor: 'pointer' }}>
+              <h4>{entry.title}</h4>
+              <p><strong>Date:</strong> {entry.date.toDateString()}</p>
+              <p><strong>Time:</strong> {entry.timestamp.toLocaleTimeString()}</p>
+              <p><strong>Total Sales:</strong> ${entry.totalSales}</p>
+            </div>
+          ))}
+        </div>
       </div>
-
-      
     </div>
   );
 }
