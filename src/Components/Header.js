@@ -23,7 +23,7 @@ function Header() {
         <div className={`arc ${isOpen ? 'show' : ''}`}>
           <ul>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/inventory">Inventory</Link></li>
+            <li><Link to="/invoice">Inventory</Link></li>
             <li><a href="#goals">Goals</a></li>
           </ul>
         </div>

@@ -40,7 +40,7 @@ nav ul {
     border-bottom-left-radius: 100%;
     border-bottom-right-radius: 100%;
     margin-top: -45px;
-    margin-right: -35px;
+    margin-right: -20px;
     overflow: hidden;
 }
 
@@ -161,11 +161,11 @@ input {
 .detailz .det {
     display: flex;
     flex-wrap: wrap;
-    
+    overflow: wrap;
     width: 30%;
     padding:15px;
     
-    white-space: nowrap;
+    
 }
 .detailz .det h4{
     font-size: 2.1rem;
@@ -175,7 +175,7 @@ input {
 }
 
 .detailz .det li {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
 }
 
 
@@ -203,7 +203,7 @@ input {
 
 
 /* Inventory Styles */
-.inventory {
+.invoice {
     padding: 5px;
     display: flex;
     justify-content: center;
@@ -211,7 +211,7 @@ input {
     flex-wrap: wrap;
     margin-top: 50px;
 }
-.inventory h2 {
+.invoice h2 {
     margin-bottom: 35px;
 }
 .tab {
@@ -221,14 +221,14 @@ input {
     border-radius: 20px;
 }
 
-.inventory tr {
+.invoice tr {
     padding-left: 10px;
 }
-.inventory input {
+.invoice input {
     width: 100%;
     
 }
-.inventory .date{
+.invoice .date{
     margin: 5px;
     display: flex;
     justify-content: flex-start;
