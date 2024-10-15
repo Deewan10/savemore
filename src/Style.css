@@ -16,14 +16,18 @@ nav {
     
 }
 
-nav  h1 {
+nav  h1 a{
     font-size: 2.3rem;
     font-weight: 400;
     color: #5757ea;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: none;
+    
 }
+
 nav span {
     color: orange;
+    
 }
 nav ul {
     list-style: none;
@@ -31,7 +35,7 @@ nav ul {
     gap: 20px;
     justify-content: center;
     align-items: center;
-    padding-top: 80px;
+    padding-top: 65px;
 }
 .arc {
     height: 100px;
@@ -47,7 +51,10 @@ nav ul {
 nav li a {
     text-decoration: none;
     color: white;
-
+    
+}
+nav ul li a:hover {
+    text-decoration: underline;
 }
 
 .hamburger {
@@ -123,12 +130,13 @@ button {
 
 
 .balance {
-    color: rgb(94, 148, 13);
+    color: #5e940d;
     font-weight: 800;
     font-size: 2.3rem;
 }
 input {
     border: none;
+    text-transform: uppercase;
 }
 
 .pie {
@@ -202,17 +210,26 @@ input {
 
 
 
-/* Inventory Styles */
+/* Invoice Styles */
 .invoice {
     padding: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin-top: 50px;
+    margin-top: 35px;
 }
 .invoice h2 {
     margin-bottom: 35px;
+}
+
+.customer-info {
+    margin-left: 0px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
 }
 .tab {
     border: 2px solid orange;
@@ -226,7 +243,7 @@ input {
 }
 .invoice input {
     width: 100%;
-    
+    padding-left: 10px;
 }
 .invoice .date{
     margin: 5px;
@@ -251,6 +268,10 @@ input {
     align-items: center;
     width: 9vw;
 }
+.highlighted {
+    background-color: orange !important;
+    border-radius: 50%;
+}
 
 
 
@@ -266,9 +287,9 @@ input {
       .arc {
         position: fixed;
         top: 0;
-        right: -250px; 
+        right: -150px; 
         height: 120vh;
-        width: 250px;
+        width: 150px;
         background-color: #5757ea;
         transition: right 0.5s ease-in-out; 
         display: flex;
@@ -277,7 +298,7 @@ input {
         align-items: center;
         z-index: 1;
         border-radius: 100%;
-        
+        margin-right: -80px;
       }
 
 

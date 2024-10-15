@@ -1,19 +1,24 @@
-// FloatingDatePicker.js
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-function FloatingDatePicker({ selectedDate, setSelectedDate }) {
+function FloatingDatePicker({ selectedDate, setSelectedDate, highlightedDates }) {
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 
   const toggleDatePicker = () => {
     setIsDatePickerOpen(!isDatePickerOpen);
   };
 
+  const formatDate = (date) => {
+    if (!date) return '';
+    const options = { day: 'numeric', month: 'long', year: 'numeric' };
+    return date.toLocaleDateString('en-US', options); // Format date to "day, month, year"
+  };
+
   return (
     <div>
       <button className='datee' onClick={toggleDatePicker} style={{ marginBottom: '10px' }}>
-        {selectedDate ? ` Date: ${selectedDate.toLocaleDateString()}` : 'Select Date'}
+        {selectedDate ? ` Date: ${formatDate(selectedDate)}` : 'Select Date'}
       </button>
 
       {isDatePickerOpen && (
@@ -25,6 +30,11 @@ function FloatingDatePicker({ selectedDate, setSelectedDate }) {
               setIsDatePickerOpen(false); 
             }}
             inline
+            dayClassName={date => 
+              highlightedDates.some(highlightedDate => 
+                highlightedDate.toDateString() === date.toDateString()
+              ) ? 'highlighted' : undefined
+            }
           />
         </div>
       )}
