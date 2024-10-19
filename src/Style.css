@@ -276,6 +276,22 @@ input {
 
 
 
+
+/* Inventory */
+.inventory table {
+    align-items: center;
+    justify-content: center;
+}
+.inventory h2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+
+
 @media (max-width: 750px) {
 
     

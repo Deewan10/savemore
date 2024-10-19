@@ -56,16 +56,16 @@ function InventoryComponent() {
   };
 
   return (
-    <div>
+    <div className='inventory'>
       <h2>Inventory Manager</h2>
-      <table border="1" cellPadding="10" style={{ width: '100%', marginBottom: '20px', borderColor: '#5757ea' }}>
+      <table border="1" cellPadding="10" style={{ width: '98%', marginBottom: '20px', borderColor: '#5757ea' }}>
         <thead style={{ backgroundColor: '#f5f5f5', color: '#333', fontWeight: 'bold', textAlign: 'center' }}>
           <tr style={{ backgroundColor: '#5757ea', color: '#fff' }}>
             <th>Item Name</th>
             <th>Cost Price</th>
             <th>Selling Price</th>
             <th>Quantity</th>
-            <th>Profit</th> {/* Profit column added here */}
+            <th>Profit</th> 
             <th>Total Amount</th>
             <th></th>
           </tr>
