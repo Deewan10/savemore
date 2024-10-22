@@ -1,23 +1,34 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Float from './Float'; 
 
 function InventoryComponent() {
   const [items, setItems] = useState([
-    { id: 1, name: 'Item 1', cost: 50, rate: 75, quantity: 10, profit: 0, total: 0 },
-    { id: 2, name: 'Item 2', cost: 100, rate: 150, quantity: 5, profit: 0, total: 0 },
+    { id: 1, name: 'Item', cost: 0, rate: 0, quantity: 0, profit: 0, total: 0 },
+    { id: 2, name: 'Item', cost: 0, rate: 0, quantity: 0, profit: 0, total: 0 },
   ]);
+  
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [history, setHistory] = useState([]);
+  const [highlightedDates, setHighlightedDates] = useState(new Set());
 
-  // Calculate total sales
+  useEffect(() => {
+    const savedHistory = sessionStorage.getItem('inventoryHistory');
+    if (savedHistory) {
+      const parsedHistory = JSON.parse(savedHistory);
+      setHistory(parsedHistory);
+      const dates = new Set(parsedHistory.map(entry => new Date(entry.date).toDateString()));
+      setHighlightedDates(dates);
+    }
+  }, []);
+
   const calculateSubtotal = () => {
     return items.reduce((total, item) => total + item.total, 0).toFixed(2);
   };
 
-  // Calculate total profit
   const calculateTotalProfit = () => {
     return items.reduce((total, item) => total + item.profit, 0).toFixed(2);
   };
 
-  // Handle input changes for each item
   const handleInputChange = (id, field, value) => {
     const updatedItems = items.map(item => {
       if (item.id === id) {
@@ -27,8 +38,8 @@ function InventoryComponent() {
           const cost = parseFloat(updatedItem.cost) || 0;
           const rate = parseFloat(updatedItem.rate) || 0;
           const quantity = parseInt(updatedItem.quantity, 10) || 0;
-          updatedItem.profit = (rate - cost) * quantity; // Calculate profit
-          updatedItem.total = rate * quantity;           // Calculate total sales
+          updatedItem.profit = (rate - cost) * quantity; 
+          updatedItem.total = rate * quantity;           
         }
 
         return updatedItem;
@@ -55,12 +66,52 @@ function InventoryComponent() {
     setItems(items.filter(item => item.id !== id));
   };
 
+  const saveToHistory = () => {
+    if (!selectedDate) {
+      alert("Please select a date to save the inventory.");
+      return;
+    }
+
+    const entry = {
+      date: selectedDate.toISOString(),
+      items: [...items],
+      totalSales: calculateSubtotal(),
+      totalProfit: calculateTotalProfit(),
+      timestamp: new Date(),
+    };
+
+    const updatedHistory = [...history, entry];
+    setHistory(updatedHistory);
+    sessionStorage.setItem('inventoryHistory', JSON.stringify(updatedHistory));
+
+    // Highlight the selected date
+    highlightedDates.add(selectedDate.toDateString());
+    setHighlightedDates(new Set(highlightedDates));
+
+    alert("Inventory saved to history.");
+  };
+
+  const getFilteredHistory = () => {
+    return history.filter(entry => entry.date && new Date(entry.date).toDateString() === selectedDate?.toDateString());
+  };
+
+  const loadHistory = (entry) => {
+    setItems(entry.items);
+    setSelectedDate(new Date(entry.date));
+  };
+
   return (
     <div className='inventory'>
       <h2>Inventory Manager</h2>
+      <Float 
+        selectedDate={selectedDate} 
+        setSelectedDate={setSelectedDate} 
+        highlightedDates={highlightedDates} // Pass highlighted dates to the date picker
+      />
+      
       <table border="1" cellPadding="10" style={{ width: '98%', marginBottom: '20px', borderColor: '#5757ea' }}>
-        <thead style={{ backgroundColor: '#f5f5f5', color: '#333', fontWeight: 'bold', textAlign: 'center' }}>
-          <tr style={{ backgroundColor: '#5757ea', color: '#fff' }}>
+        <thead style={{ backgroundColor: '#5757ea', color: '#fff' }}>
+          <tr >
             <th>Item Name</th>
             <th>Cost Price</th>
             <th>Selling Price</th>
@@ -109,12 +160,12 @@ function InventoryComponent() {
                   style={{ padding: '5px', width: '100%' }}
                 />
               </td>
-              <td>{item.profit.toFixed(2)}</td> {/* Display calculated profit */}
-              <td>{item.total.toFixed(2)}</td>  {/* Display calculated total */}
+              <td>{item.profit.toFixed(2)}</td> 
+              <td>{item.total.toFixed(2)}</td> 
               <td>
-                <button
+                <button className='btn'
                   onClick={() => removeItem(item.id)}
-                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'red' }}
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'red', fontSize: '14px' }}
                 >
                   X
                 </button>
@@ -137,10 +188,29 @@ function InventoryComponent() {
 
       <button
         onClick={addItem}
-        style={{ padding: '10px 20px', marginBottom: '20px', backgroundColor: '#4a90e2', color: 'white', border: 'none' }}
+        style={{ padding: '10px 20px', margin: '15px', backgroundColor: '#5757ea', color: 'white', border: 'none' }}
       >
         Add Item
       </button>
+
+      <button
+        onClick={saveToHistory}
+        style={{ padding: '10px 20px', margin: '15px', backgroundColor: '#5757ea', color: 'white', border: 'none' }}
+      >
+        Save to History
+      </button>
+
+      <h3>Saved History:</h3>
+      <div className="history-cards" style={{ display: 'flex', flexWrap: 'wrap' }}>
+        {getFilteredHistory().map((entry, index) => (
+          <div key={index} className="history-card" onClick={() => loadHistory(entry)} style={{ border: '1px solid #ddd', padding: '10px', margin: '10px', width: '200px', cursor: 'pointer' }}>
+            <h4>{new Date(entry.date).toLocaleDateString()}</h4>
+            <p><strong>Total Sales:</strong> ${entry.totalSales}</p>
+            <p><strong>Total Profit:</strong> ${entry.totalProfit}</p>
+            <p><strong>Time:</strong> {new Date(entry.timestamp).toLocaleTimeString()}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

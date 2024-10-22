@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa'; 
-import { Link } from 'react-router-dom'; // Import Link for routing
+import { Link } from 'react-router-dom'; 
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,14 +17,15 @@ function Header() {
         </div>
 
         <div className="hamburger" onClick={toggleMenu}>
-          {isOpen ? <FaTimes style={{ color: 'red' }} /> : <FaBars style={{ color: 'blue' }} />}
+          {isOpen ? <FaTimes style={{ color: 'red', }} /> : <FaBars style={{ color: 'blue' }} />}
         </div>
 
         <div className={`arc ${isOpen ? 'show' : ''}`}>
           <ul>
             <li><Link to="/">Home</Link></li>
+            <li><Link to="/budget">Budget</Link></li>
             <li><Link to="/invoice">Inventory</Link></li>
-            <li><a href="#goals">Goals</a></li>
+            
           </ul>
         </div>
       </nav>

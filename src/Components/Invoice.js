@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import FloatingDatePicker from './FloatingDatePicker.js';
 
-function Invoice() {
+function Invoice({ highlightedDates, setHighlightedDates }) {
   const [items, setItems] = useState([{ id: 1, name: '', rate: 0, quantity: 0, total: 0 }]);
   const [selectedDate, setSelectedDate] = useState(null);
   const [history, setHistory] = useState([]);
-  
   const [invoiceNumber, setInvoiceNumber] = useState(1001);
 
   // Customer information states
@@ -82,6 +81,9 @@ function Invoice() {
     sessionStorage.setItem('invoiceHistory', JSON.stringify(updatedHistory)); // Save to sessionStorage
     alert("Invoice saved to history.");
     setInvoiceNumber(invoiceNumber + 1);
+
+    // Highlight the selected date
+    setHighlightedDates(prev => new Set(prev).add(selectedDate.toDateString()));
   };
 
   const getFilteredHistory = () => {
@@ -111,8 +113,6 @@ function Invoice() {
     setCustomerName(entry.customerName);
     setCustomerAddress(entry.customerAddress);
     setCustomerPhone(entry.customerPhone);
-    
-    entry.timestamp = new Date(entry.timestamp); 
   };
 
   const getHighlightedDates = () => {
@@ -134,7 +134,7 @@ function Invoice() {
         />
         <input 
           type="text"
-          value= {customerAddress}
+          value={customerAddress}
           onChange={(e) => setCustomerAddress(e.target.value)}
           placeholder="Customer Address"
           style={{ marginBottom: '5px', padding: '10px', width: '100%' }}
@@ -152,7 +152,7 @@ function Invoice() {
         <FloatingDatePicker 
           selectedDate={selectedDate} 
           setSelectedDate={setSelectedDate} 
-          highlightedDates={getHighlightedDates()} 
+          highlightedDates={getHighlightedDates()} // Ensure highlighted dates are fetched correctly
         />
       </div>
 
@@ -184,7 +184,6 @@ function Invoice() {
                     value={item.rate}
                     onChange={(e) => handleInputChange(item.id, 'rate', e.target.value)}
                     onFocus={() => handleFocus(item.id, 'rate')}
-                    color='#5e940d'
                     placeholder="Rate"
                   />
                 </td>
@@ -233,10 +232,9 @@ function Invoice() {
           {getFilteredHistory().map((entry, index) => (
             <div key={index} className="history-card" onClick={() => loadHistory(entry)} style={{ border: '1px solid #ddd', padding: '10px', margin: '10px', width: '200px', cursor: 'pointer' }}>
               <p><strong>Customer:</strong> {entry.customerName}</p>
-              <p><strong>Date:</strong> {new Date(entry.date).toDateString()}</p> {/* Convert entry.date to Date */}
-              <p><strong>Time:</strong> {new Date(entry.timestamp).toLocaleTimeString()}</p> {/* Convert timestamp to Date */}
+              <p><strong>Date:</strong> {new Date(entry.date).toDateString()}</p>
+              <p><strong>Time:</strong> {new Date(entry.timestamp).toLocaleTimeString()}</p>
               <p><strong>Total Sales:</strong> ${entry.totalSales}</p>
-              
             </div>
           ))}
         </div>

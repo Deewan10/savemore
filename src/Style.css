@@ -63,6 +63,43 @@ nav ul li a:hover {
     cursor: pointer;
   }
 
+/* Home */
+.home {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    justify-content: center;
+    align-items: center;
+    
+}
+.grid {
+    width: 85%;
+    padding: 30px;
+    display: flex;
+    height: 60vh;
+    border: 2px solid orange;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    justify-content: space-between;
+}
+.grid .pixx {
+    width: 45%;
+}
+.grid .pixx img {
+    height: 100%;
+}
+
+.textarea {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+
+/* Budget */
 #budgt h2 {
     font-size: 2.3rem;
     font-weight: 600;
@@ -281,6 +318,7 @@ input {
 .inventory table {
     align-items: center;
     justify-content: center;
+    margin-left: 10px;
 }
 .inventory h2 {
     width: 100%;
@@ -288,6 +326,9 @@ input {
     justify-content: center;
     align-items: center;
     margin-bottom: 30px;
+}
+.smalll {
+    display: hidden;
 }
 
 
@@ -393,6 +434,9 @@ input {
         width: 60%;
     }
     
+    .smalll {
+        display: hidden;
+    }
 
     .detailz .det h4 {
         font-size: 1rem;
@@ -409,8 +453,39 @@ input {
 
 
 @media (max-width: 458px) {
-
+    nav {
+        margin-top: 10px;
+    }
+    .arc {
+        width: 200px;
+        height: 101%;
+        margin-top: -4px;
+        margin-right: -100px;
+    }
     nav .arc {
+        display: initial;
+    }
+    nav  h1 a {
+        font-size: 2rem;
+    }
+
+    .arc ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 0.9rem;
+    }
+    .arc ul {
+        margin-top: 250px;
+        margin-right: 80px;
+    }
+
+    .hamburger {
+        margin-right:'-25px' 
+    }
+    .large {
+        display: hidden;
+    }
+    .smalll {
         display: initial;
     }
     .data {
@@ -466,5 +541,38 @@ input {
     .balance {
         margin-left: 20px;
     }
-    
+    .history button {
+        width: 19vw;
+        font-size: 10px;
+        display: flex;
+    }
+    .invoice {
+        padding: 15px;
+    }
+    th {
+        font-size: 12px;
+        padding: 5px;
+    }
+    th:nth-child(3) {
+        padding: -5px;
+    }
+    .invoice input  {
+        font-size: 11px;
+    }
+    .btn {
+        margin-right: 3px;
+    }
+    .grid {
+        flex-direction: column;
+        justify-content: center;
+        height: 40vh;
+        width: 80%;
+    }
+    .grid .pixx,
+    .textarea {
+        width: 100%;
+    }
+    .grid .pixx img {
+        width: 100%;
+    }
 }

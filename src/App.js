@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import Home from './Components/Home';
 import Header from './Components/Header';
 import Budget from './Components/Budget';
 import Invoice from './Components/Invoice'; 
@@ -9,7 +10,7 @@ import './Style.css';
 
 function App() {
   const location = useLocation(); // Hook to get the current path
-  const [showInventory, setShowInventory] = useState(false);
+  const [showInventory, setShowInventory] = useState(location.pathname === '/invoice' ? false : true); // Set initial state based on current path
 
   const showInvoice = () => {
     setShowInventory(false); // Switch to Invoice component
@@ -23,14 +24,13 @@ function App() {
     <div className="App">
       <Header />
 
-      {/* Conditionally show the buttons only on the '/invoice' route */}
       {location.pathname === '/invoice' && (
         <div style={{ display: 'flex', gap: '1px', margin: '20px', marginTop: '40px' }}>
           <button 
             onClick={showInvoice} 
             style={{
               padding: '10px 20px',
-              backgroundColor: showInventory ? '#f0f0f0' : '#4a90e2',
+              backgroundColor: showInventory ? '#f0f0f0' : '#5757ea',
               color: showInventory ? 'black' : 'white',
               border: 'none',
               cursor: 'pointer',
@@ -45,7 +45,7 @@ function App() {
             onClick={showInventoryComponent} 
             style={{
               padding: '10px 20px',
-              backgroundColor: showInventory ? '#4a90e2' : '#f0f0f0',
+              backgroundColor: showInventory ? '#5757ea' : '#f0f0f0',
               color: showInventory ? 'white' : 'black',
               border: 'none',
               cursor: 'pointer',
@@ -60,8 +60,8 @@ function App() {
       )}
 
       <Routes>
-        <Route path="/" element={<Budget />} />
-        {/* Conditionally render Invoice or InventoryComponent based on the button selection */}
+        <Route path="/" element={<Home />} />
+        <Route path="/budget" element={<Budget />} />
         <Route path="/invoice" element={showInventory ? <InventoryComponent /> : <Invoice />} />
       </Routes>
     </div>
