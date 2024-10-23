@@ -14,8 +14,7 @@ nav {
     height: 40px;
     width: 100%; 
     position: static;
-    background-color: white;
-    
+    background-color: white;  
     margin-bottom: 80px;
 }
 
@@ -97,6 +96,11 @@ nav ul li a:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.textarea p {
+    padding-top: 30px;
+    padding-bottom: 50px;
+    font-size: 19px;
 }
 
 
@@ -563,9 +567,12 @@ input {
     .grid {
         flex-direction: column;
         justify-content: center;
-        height: 40vh;
+        height: 42vh;
         width: 80%;
     }
+    .pixx {
+        padding-left: 40px;
+    } 
     .grid .pixx,
     .textarea {
         width: 100%;
@@ -578,6 +585,11 @@ input {
     }
     .inventory-table th {
         content: attr(data-short);
-      }
+    }
+    .textarea p {
+        padding-top: 5px;
+        padding-bottom: 10px;
+        font-size: 10px;
+    }
     
 }
