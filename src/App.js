@@ -25,7 +25,7 @@ function App() {
       <Header />
 
       {location.pathname === '/invoice' && (
-        <div style={{ display: 'flex', gap: '1px', margin: '20px', marginTop: '40px' }}>
+        <div className='swtch' style={{ display: 'flex', gap: '1px', margin: '20px', marginTop: '40px' }}>
           <button 
             onClick={showInvoice} 
             style={{

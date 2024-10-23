@@ -106,18 +106,18 @@ function InventoryComponent() {
       <Float 
         selectedDate={selectedDate} 
         setSelectedDate={setSelectedDate} 
-        highlightedDates={highlightedDates} // Pass highlighted dates to the date picker
+        highlightedDates={highlightedDates} 
       />
       
       <table border="1" cellPadding="10" style={{ width: '98%', marginBottom: '20px', borderColor: '#5757ea' }}>
         <thead style={{ backgroundColor: '#5757ea', color: '#fff' }}>
           <tr >
-            <th>Item Name</th>
+            <th >Item Name</th>
             <th>Cost Price</th>
             <th>Selling Price</th>
-            <th>Quantity</th>
+            <th data-short="Qty">Quantity</th>
             <th>Profit</th> 
-            <th>Total Amount</th>
+            <th>Total Amount</th> 
             <th></th>
           </tr>
         </thead>

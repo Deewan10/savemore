@@ -13,7 +13,10 @@ nav {
     padding: 20px;
     height: 40px;
     width: 100%; 
-    
+    position: static;
+    background-color: white;
+    margin-top: 20px;
+    margin-bottom: 80px;
 }
 
 nav  h1 a{
@@ -315,10 +318,15 @@ input {
 
 
 /* Inventory */
-.inventory table {
+.inventory  {
     align-items: center;
     justify-content: center;
-    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.float {
+
 }
 .inventory h2 {
     width: 100%;
@@ -327,9 +335,7 @@ input {
     align-items: center;
     margin-bottom: 30px;
 }
-.smalll {
-    display: hidden;
-}
+
 
 
 
@@ -466,7 +472,7 @@ input {
         display: initial;
     }
     nav  h1 a {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .arc ul li a {
@@ -479,15 +485,7 @@ input {
         margin-right: 80px;
     }
 
-    .hamburger {
-        margin-right:'-25px' 
-    }
-    .large {
-        display: hidden;
-    }
-    .smalll {
-        display: initial;
-    }
+    
     .data {
         margin-top: -120px;
         padding: 10px;
@@ -575,4 +573,11 @@ input {
     .grid .pixx img {
         width: 100%;
     }
+    .swtch button {
+        padding: 8px 5px;
+    }
+    .inventory-table th {
+        content: attr(data-short);
+      }
+    
 }

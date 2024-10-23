@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Invoice from './Invoice'; // Import your Invoice component
-import InventoryComponent from './InventoryComponent'; // Import your Inventory component
+import Invoice from './Invoice'; 
+import InventoryComponent from './InventoryComponent'; 
 
 function Inventory() {
   const [activeComponent, setActiveComponent] = useState('invoice');
