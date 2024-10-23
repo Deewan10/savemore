@@ -593,3 +593,9 @@ input {
     }
     
 }
+
+@media (max-width: 395px) {
+    .grid {
+        height: 45vh;
+    }
+}
