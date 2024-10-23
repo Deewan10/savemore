@@ -598,4 +598,7 @@ input {
     .grid {
         height: 45vh;
     }
+    .grid .pixx {
+        overflow: hidden;
+    }
 }
