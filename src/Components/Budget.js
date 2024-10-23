@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import FloatingDatePicker from './FloatingDatePicker.js';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { Pie } from 'react-chartjs-2';
@@ -147,18 +146,18 @@ function Budget() {
  
   
 
-  // Prepare data for the pie chart
-  const pieData = {
-    labels: [...expenses.map(expense => expense.name), balance > 0 ? 'Balance' : null].filter(Boolean),
-    datasets: [
-      {
-        data: [...expenses.map(expense => Number(expense.amount)), balance > 0 ? balance : null].filter(Boolean),
-        backgroundColor: [
-          '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#F7464A', '#46BFBD', '#FDB45C',
-        ],
-      },
-    ],
-  };
+  // // Prepare data for the pie chart
+  // const pieData = {
+  //   labels: [...expenses.map(expense => expense.name), balance > 0 ? 'Balance' : null].filter(Boolean),
+  //   datasets: [
+  //     {
+  //       data: [...expenses.map(expense => Number(expense.amount)), balance > 0 ? balance : null].filter(Boolean),
+  //       backgroundColor: [
+  //         '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#F7464A', '#46BFBD', '#FDB45C', '#36A2EB','#df0eab', '#ff0000', '#8D6E63', '#15ff00', '#00b7ff', '#FFA726'
+  //       ],
+  //     },
+  //   ],
+  // };
 
 
   
