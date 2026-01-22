@@ -1196,3 +1196,24 @@
       flex-direction: column;
     }
   }
+
+  @media (max-width: 480px) {
+    .hamburger-icon {
+      margin-top: 5px;
+    }
+    .cta-subtitle {
+      width: 100%;
+    }
+    .cta-content {
+      padding: 20px;
+    }
+    .feature span{
+      max-width: 300px;
+      font-size: 0.9rem;
+    }
+    .footer-links {
+      grid-template-columns: 2fr 2fr;
+      gap: var(--spacing-md);
+      /* display: flex; */
+    }
+  }

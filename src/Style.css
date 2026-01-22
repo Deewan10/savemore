@@ -275,9 +275,7 @@ input {
     flex-direction: column;
     padding: 10px;
 }
-.float {
 
-}
 .inventory h2 {
     width: 100%;
     display: flex;
@@ -409,9 +407,7 @@ input {
 
 
 @media (max-width: 458px) {
-    nav {
-        margin-top: 10px;
-    }
+    
     .arc {
         width: 200px;
         height: 101%;
@@ -434,16 +430,8 @@ input {
         margin-top: 250px;
         margin-right: 80px;
     }
-    .hamburger {
-        position: absolute;
-        top: 20px;
-        right: 20px; 
-        transition: all 0.3s ease; 
-      }
-    .hamburger.active {
-        
-        right: 2; 
-      }
+    
+    
 
     .data {
         margin-top: -120px;
