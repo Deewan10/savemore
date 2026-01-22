@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import './Header.css'; // You'll need to create this CSS file
+import './Header.css'; 
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);

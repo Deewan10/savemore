@@ -3,7 +3,7 @@ import './Home.css';
 import { Shield, Users, Clock, Target, Calendar, BarChart3, CheckCircle, Star } from 'lucide-react';
 
 function Home() {
-  const [scrolled, setScrolled] = useState(false);
+  const [, setScrolled] = useState(false);
   const [openFaq, setOpenFaq] = useState(null);
 
   useEffect(() => {
@@ -125,30 +125,7 @@ function Home() {
 
   return (
     <div className="home-app">
-      {/* Header */}
-      {/* <header className={`home-header ${scrolled ? 'scrolled' : ''}`}>
-        <div className="header-container">
-          <div className="logo">
-            <span className="logo-text">SaveMore</span>
-          </div>
-          
-          <nav className="nav-menu">
-            <a href="#how-it-works" className="nav-link">How It Works</a>
-            <a href="#funds" className="nav-link">Funds</a>
-            <a href="#learn" className="nav-link">Learn</a>
-            <a href="#about" className="nav-link">About</a>
-          </nav>
-          
-          <div className="header-actions">
-            <button className="login-button">Sign In</button>
-            <button className="get-started-button">Get Started</button>
-          </div>
-          
-          <button className="mobile-menu-button">
-            <span className="menu-icon">☰</span>
-          </button>
-        </div>
-      </header> */}
+     
 
       {/* Main Content */}
       <main>
