@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Home.css';
-import { Shield, Users, Clock, Target, Calendar, BarChart3, CheckCircle, Star } from 'lucide-react';
+import { Shield, Users, Clock, Target, Calendar, BarChart3, CheckCircle, Star, FileText, PieChart, Calculator, TrendingUp } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
 
 function Home() {
   const [, setScrolled] = useState(false);
@@ -293,6 +295,145 @@ function Home() {
             </div>
           </div>
         </section>
+
+
+
+
+      <section className="utility-tools">
+        <div className="section-container">
+          <h2 className="section-title">Free Tools for Smarter Money Management</h2>
+          <p className="section-subtitle">
+            Beyond investing, we provide practical tools to help you manage your finances effectively.
+          </p>
+          
+          <div className="tools-grid">
+            {/* Invoice Generator Card */}
+            <div className="tool-card">
+              <div className="tool-header">
+                <div className="tool-icon invoice-icon">
+                  <FileText size={32} />
+                </div>
+                <h3 className="tool-title">Invoice Generator</h3>
+              </div>
+              
+              <div className="tool-body">
+                <p className="tool-description">
+                  Create professional invoices in minutes. Perfect for freelancers, small businesses, and side hustles.
+                </p>
+                
+                <div className="tool-features">
+                  <div className="feature">
+                    <span className="feature-check">✓</span>
+                    <span>Customizable templates</span>
+                  </div>
+                  <div className="feature">
+                    <span className="feature-check">✓</span>
+                    <span>Automatic calculations</span>
+                  </div>
+                  <div className="feature">
+                    <span className="feature-check">✓</span>
+                    <span>Export to PDF/Excel</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="tool-actions">
+                <Link to="/invoice" className="tool-button primary-tool-button">
+                  Generate Invoice
+                </Link>
+                <Link to="" className="tool-link">
+                  View templates →
+                </Link>
+              </div>
+            </div>
+            
+            {/* Budget Planner Card */}
+            <div className="tool-card">
+              <div className="tool-header">
+                <div className="tool-icon budget-icon">
+                  <PieChart size={32} />
+                </div>
+                <h3 className="tool-title">Budget Planner</h3>
+              </div>
+              
+              <div className="tool-body">
+                <p className="tool-description">
+                  Plan your monthly budget, track expenses, and achieve your financial goals with our smart planner.
+                </p>
+                
+                <div className="tool-features">
+                  <div className="feature">
+                    <span className="feature-check">✓</span>
+                    <span>Smart categorization</span>
+                  </div>
+                  <div className="feature">
+                    <span className="feature-check">✓</span>
+                    <span>Expense tracking</span>
+                  </div>
+                  <div className="feature">
+                    <span className="feature-check">✓</span>
+                    <span>Goal setting</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="tool-actions">
+                <Link to="/budget" className="tool-button primary-tool-button">
+                  Plan Budget
+                </Link>
+                <Link to="" className="tool-link">
+                  How to use →
+                </Link>
+              </div>
+            </div>
+            
+            {/* Coming Soon Card */}
+            <div className="tool-card">
+              <div className="tool-header">
+                <div className="tool-icon future-icon">
+                  <TrendingUp size={32} />
+                </div>
+                <h3 className="tool-title">More Tools Coming</h3>
+              </div>
+              
+              <div className="tool-body">
+                <p className="tool-description">
+                  We're constantly developing new tools to help you manage and grow your wealth.
+                </p>
+                
+                <div className="upcoming-tools">
+                  <div className="upcoming-tool">
+                    <Calculator size={18} />
+                    <span>Tax Calculator</span>
+                  </div>
+                  <div className="upcoming-tool">
+                    <FileText size={18} />
+                    <span>Receipt Scanner</span>
+                  </div>
+                  <div className="upcoming-tool">
+                    <PieChart size={18} />
+                    <span>Investment Simulator</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="tool-actions">
+                <button className="tool-button secondary-tool-button" disabled>
+                  Coming Soon
+                </button>
+                <span className="tool-note">Suggest a tool →</span>
+              </div>
+            </div>
+          </div>
+          
+          <div className="tools-cta">
+            <p className="cta-text">
+              All tools are <strong>completely free</strong> and designed to work seamlessly with your investment account.
+            </p>
+          </div>
+        </div>
+      </section>
+
 
         {/* Education */}
         <section className="education" id="learn">
